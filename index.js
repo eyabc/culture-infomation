@@ -64,7 +64,7 @@ const fetchAllUriAndSaveResult = () => {
 
 const token = process.env.GITHUB_TOKEN;
 const gitWrite = (name, content) => {
-  axios.post(
+  axios.put(
       `https://api.github.com/repos/eyabc/culture-infomation/contents/${name}`,
       {
         message: Date.now(),
