@@ -51,16 +51,15 @@ const fetchAPIAndSaveResult = async () => {
     }
   }
 
-  fs.writeFileSync("./fetchResult.json", JSON.stringify(allList.flat()));
+  gitWrite("fetchResult.json", JSON.stringify(allList.flat()));
 }
 
 const fetchAllUriAndSaveResult = () => {
-  fs.writeFileSync("./fetchUrls.json", JSON.stringify(list.map(item => ({
+  gitWrite("fetchUrls.json", JSON.stringify(list.map(item => ({
     idEn: item.idEn,
     idKo: item.idKo,
     url: item.url
   })).flat()));
-
 }
 
 const token = process.env.GITHUB_TOKEN;
@@ -89,20 +88,6 @@ const gitWrite = (name, content) => {
   });
 
 }
-await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
-  owner: 'OWNER',
-  repo: 'REPO',
-  path: 'PATH',
-  message: 'my commit message',
-  committer: {
-    name: 'Monalisa Octocat',
-    email: 'octocat@github.com'
-  },
-  content: 'bXkgbmV3IGZpbGUgY29udGVudHM=',
-  headers: {
-    'X-GitHub-Api-Version': '2022-11-28'
-  }
-})
 
 const main = async () => {
 
