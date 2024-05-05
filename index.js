@@ -51,21 +51,24 @@ const fetchAPIAndSaveResult = async () => {
     }
   }
 
-  gitWrite("fetchResult.json", allList.flat(), "c9d03ab400ac2e2ddd3cf8771259b6ed3ddf4ea6");
+
+
+  gitWrite("fetchResult.json", allList.flat());
 }
 
-const fetchAllUriAndSaveResult = () => {
-  gitWrite("fetchUrls.json", list.map(item => ({
+const fetchAllUriAndSaveResult = async () => {
+  await gitWrite("fetchUrls.json", list.map(item => ({
     idEn: item.idEn,
     idKo: item.idKo,
     url: item.url
-  })).flat(), "fc5cc8dca9875d17b449d8636ffe786bddc432af");
+  })).flat());
 }
 
 const token = process.env.GITHUB_TOKEN;
 
 // https://docs.github.com/ko/rest/repos/contents?apiVersion=2022-11-28#create-or-update-file-contents
-const gitWrite = (name, content, sha) => {
+const gitWrite = async (name, content, sha) => {
+  const axiosResponse = await axios.get(`https://api.github.com/repos/eyabc/culture-infomation/contents/${name}`);
   axios.put(
       `https://api.github.com/repos/eyabc/culture-infomation/contents/${name}`,
       {
@@ -74,8 +77,8 @@ const gitWrite = (name, content, sha) => {
           name: "eyabc",
           email: "bey4314@naver.com"
         },
-        content: btoa(JSON.stringify(encodeURIComponent(content))),
-        sha: sha
+        content: Buffer.from(JSON.stringify(content)).toString("base64"),
+        sha: axiosResponse.data.sha
       },
       {
         headers: {
@@ -97,7 +100,7 @@ const gitWrite = (name, content, sha) => {
 const main = async () => {
 
   await fetchAPIAndSaveResult();
-  fetchAllUriAndSaveResult();
+  await fetchAllUriAndSaveResult();
 
 };
 
