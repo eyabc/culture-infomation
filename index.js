@@ -77,7 +77,9 @@ const gitWrite = (name, content) => {
       {
         headers: {
           'Authorization':
-              `token ${token}`
+              `Bearer ${token}`,
+          Accept: 'application/vnd.github+json',
+          "X-GitHub-Api-Version": "2022-11-28"
         }
       })
   .then((response) => {
