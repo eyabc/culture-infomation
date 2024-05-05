@@ -51,28 +51,31 @@ const fetchAPIAndSaveResult = async () => {
     }
   }
 
-  gitWrite("fetchResult.json", JSON.stringify(allList.flat()));
+  gitWrite("fetchResult.json", allList.flat(), "c9d03ab400ac2e2ddd3cf8771259b6ed3ddf4ea6");
 }
 
 const fetchAllUriAndSaveResult = () => {
-  gitWrite("fetchUrls.json", JSON.stringify(list.map(item => ({
+  gitWrite("fetchUrls.json", list.map(item => ({
     idEn: item.idEn,
     idKo: item.idKo,
     url: item.url
-  })).flat()));
+  })).flat(), "fc5cc8dca9875d17b449d8636ffe786bddc432af");
 }
 
 const token = process.env.GITHUB_TOKEN;
-const gitWrite = (name, content) => {
+
+// https://docs.github.com/ko/rest/repos/contents?apiVersion=2022-11-28#create-or-update-file-contents
+const gitWrite = (name, content, sha) => {
   axios.put(
       `https://api.github.com/repos/eyabc/culture-infomation/contents/${name}`,
       {
-        message: Date.now(),
+        message: Date.now().toString(),
         committer: {
           name: "eyabc",
           email: "bey4314@naver.com"
         },
-        content
+        content: btoa(JSON.stringify(encodeURIComponent(content))),
+        sha: sha
       },
       {
         headers: {
