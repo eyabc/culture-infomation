@@ -51,9 +51,7 @@ const fetchAPIAndSaveResult = async () => {
     }
   }
 
-
-
-  gitWrite("fetchResult.json", allList.flat());
+  await gitWrite("fetchResult.json", allList.flat());
 }
 
 const fetchAllUriAndSaveResult = async () => {
