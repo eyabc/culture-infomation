@@ -3,7 +3,6 @@ const fs = require("fs");
 
 const regex = /<img[^>]+src="([^"]+)"/;
 
-
 const allList = [];
 // 한예종 공연 정보 크롤링
 const list = [
@@ -20,7 +19,8 @@ const list = [
         place: item.placeCd,
         imageTag: (() => {
           const match = regex.exec(item.exContent);
-          return (!!match && match.length > 1) ? ("https://www.karts.ac.kr" + match[1]) : "";
+          return (!!match && match.length > 1) ? ("https://www.karts.ac.kr"
+              + match[1]) : "";
         })(),
         startDate: item.exStdt,
         endDate: item.exEddt,
@@ -36,7 +36,7 @@ const list = [
 
 const fetchAPI = async (api) => {
   if (api?.node) {
-    const { data } = await axios.get(api.url);
+    const {data} = await axios.get(api.url);
     return api.node.list(data);
   }
 
@@ -57,11 +57,52 @@ const fetchAPIAndSaveResult = async () => {
 const fetchAllUriAndSaveResult = () => {
   fs.writeFileSync("./fetchUrls.json", JSON.stringify(list.map(item => ({
     idEn: item.idEn,
-    idKo:  item.idKo,
+    idKo: item.idKo,
     url: item.url
   })).flat()));
 
 }
+
+const token = process.env.GITHUB_TOKEN;
+const gitWrite = (name, content) => {
+  axios.post(
+      `https://api.github.com/repos/eyabc/culture-infomation/contents/${name}`,
+      {
+        message: Date.now(),
+        committer: {
+          name: "eyabc",
+          email: "bey4314@naver.com"
+        },
+        content
+      },
+      {
+        headers: {
+          'Authorization':
+              `token ${token}`
+        }
+      })
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
+}
+await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+  owner: 'OWNER',
+  repo: 'REPO',
+  path: 'PATH',
+  message: 'my commit message',
+  committer: {
+    name: 'Monalisa Octocat',
+    email: 'octocat@github.com'
+  },
+  content: 'bXkgbmV3IGZpbGUgY29udGVudHM=',
+  headers: {
+    'X-GitHub-Api-Version': '2022-11-28'
+  }
+})
 
 const main = async () => {
 
