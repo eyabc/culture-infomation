@@ -70,7 +70,7 @@ const gitWrite = async (name, content, sha) => {
   axios.put(
       `https://api.github.com/repos/eyabc/culture-infomation/contents/${name}`,
       {
-        message: Date.now().toString(),
+        message: new Date().toISOString(),
         committer: {
           name: "eyabc",
           email: "bey4314@naver.com"
@@ -94,11 +94,14 @@ const gitWrite = async (name, content, sha) => {
   });
 
 }
-
+// 이메일이 자꾸와서... ㅠ
 const main = async () => {
-
-  await fetchAPIAndSaveResult();
-  await fetchAllUriAndSaveResult();
+  try {
+    await fetchAPIAndSaveResult();
+    await fetchAllUriAndSaveResult();
+  } catch (e) {
+    console.log(e);
+  }
 
 };
 
