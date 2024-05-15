@@ -1,4 +1,5 @@
-import create from 'zustand';
+import { create } from 'zustand';
+import {fetchAll} from "../repository";
 
 const allListStore = create((set) => ({
   list: [
@@ -15,11 +16,13 @@ const allListStore = create((set) => ({
   ],
 
   fetchList: () =>
-      set((list) => {
-        return {
-          list
-        }
+      set(async (state) => {
+        await fetchAll().then(r => {
+          state.list = r;
+        })
       }),
 
 
 }))
+
+export default allListStore;

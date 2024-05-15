@@ -1,12 +1,12 @@
 import './App.css';
 
-// @ts-ignore
 import React from "react"
 import { useMediaQuery } from "react-responsive"
 import Pc from "./components/pc/pc.jsx";
 
 
 function App() {
+  console.log("Rendered App")
 
   const isPc = useMediaQuery({
     query : "(min-width:1024px)"
