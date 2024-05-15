@@ -5,10 +5,7 @@ name: Node.js CI
 
 on:
   schedule:
-    - cron: '*/10 * * * *'
-  push:
-    branch:
-      - main
+    - cron: '0 0 * * *'
 
   workflow_dispatch:
 

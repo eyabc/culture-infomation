@@ -3,7 +3,7 @@ import './App.css';
 // @ts-ignore
 import React from "react"
 import { useMediaQuery } from "react-responsive"
-import Pc from "./components/pc/pc.tsx";
+import Pc from "./components/pc/pc.jsx";
 
 
 function App() {
