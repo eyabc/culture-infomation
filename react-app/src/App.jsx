@@ -1,5 +1,3 @@
-import './App.css';
-
 import React from "react"
 import { useMediaQuery } from "react-responsive"
 import Pc from "./components/pc/pc.jsx";

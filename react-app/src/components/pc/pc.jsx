@@ -23,7 +23,6 @@ function Pc() {
             </div>
         ))}
 
-
        </div>
   )
 }
