@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import {create} from 'zustand';
 import {fetchAll} from "../repository";
 
 const allListStore = create((set) => ({
@@ -14,14 +14,12 @@ const allListStore = create((set) => ({
       "endDate": "2024-05-02"
     }
   ],
-
-  fetchList: () =>
-      set(async (state) => {
-        await fetchAll().then(r => {
-          state.list = r;
-        })
-      }),
-
+  fetchList: async() => {
+    const result = await fetchAll();
+    set((state) => ({
+      list: result
+    }))
+  },
 
 }))
 

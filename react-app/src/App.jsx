@@ -4,9 +4,7 @@ import React from "react"
 import { useMediaQuery } from "react-responsive"
 import Pc from "./components/pc/pc.jsx";
 
-
 function App() {
-  console.log("Rendered App")
 
   const isPc = useMediaQuery({
     query : "(min-width:1024px)"
@@ -18,7 +16,9 @@ function App() {
     query : "(max-width:767px)"
   });
 
-  return isPc &&(
+  console.dir({isPc, isMobile, isTablet});
+
+  return (
     <div className="App">
       <Pc />
     </div>
