@@ -1,7 +1,8 @@
 function layoutHeader() {
 
   return (
-    <header id={'pc-layout-header'}>
+    <header id={'layout-header'}>
+      <div></div>
       <section>
         <div id='app-name-header'>Culture Information</div>
       </section>
