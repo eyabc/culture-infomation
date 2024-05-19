@@ -1,0 +1,24 @@
+#pc-layout-header {
+  display: block;
+  unicode-bidi: isolate;
+
+  width: 100%;
+  height: 4.8rem;
+  margin: 0 auto;
+  background: transparent;
+  transition: margin-top .3s ease-in-out;
+  background-color: #fff;
+}
+
+#app-name-header {
+  width: 42rem;
+  height: 8.8rem;
+  position: absolute;
+  object-fit: contain;
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  margin: 0 auto;
+}

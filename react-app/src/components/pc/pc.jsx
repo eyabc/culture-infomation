@@ -1,5 +1,7 @@
 import React, {useEffect} from "react";
 import allListStore from "../../store/allListStore.js";
+import LayoutHeader from "./layout/layoutHeader";
+import LayoutContent from "./layout/layoutContent";
 
 function Pc() {
   const { list, fetchList } = allListStore();
@@ -10,6 +12,8 @@ function Pc() {
 
   return (
       <div>
+        <LayoutHeader/>
+        <LayoutContent />
         {list.map((item) => (
             <div key={item.id}>
               <p>{item.idEn}</p>
