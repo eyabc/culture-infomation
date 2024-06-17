@@ -14,9 +14,8 @@ function App() {
     query : "(max-width:767px)"
   });
 
-  console.dir({isPc, isMobile, isTablet});
-
   return (
+
     <div className="App">
       <Pc />
     </div>

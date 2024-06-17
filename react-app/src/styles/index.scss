@@ -30,3 +30,8 @@ hr {
 *,:after,:before {
   box-sizing: inherit
 }
+
+img:not([src]) {
+  background: cornsilk;
+  height: 200px;
+}
