@@ -24,6 +24,7 @@ const list = [
         })(),
         startDate: item.exStdt,
         endDate: item.exEddt,
+        tag: [ "music" ]
       })),
     }
   },
