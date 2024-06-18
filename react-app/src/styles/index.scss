@@ -35,3 +35,15 @@ img:not([src]) {
   background: cornsilk;
   height: 200px;
 }
+
+.card {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* 기본 그림자 */
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out; /* 그림자 변화 애니메이션 */
+
+}
+
+.card:hover {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* hover 시 그림자 */
+  transform: scale(1.02); /* hover 시 크기 5% 증가 */
+
+}

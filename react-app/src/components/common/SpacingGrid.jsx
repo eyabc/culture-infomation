@@ -23,7 +23,11 @@ export default function SpacingGrid({list}) {
           <Grid container justifyContent="center" spacing={2}>
             {list.map((item) => (
                 <Grid key={item.id} item>
-                  <Card sx={{
+                  <div
+                      class='card'
+                  >
+                  <Card
+                      sx={{
                     width: 300,
                   }}>
                     <CardHeader
@@ -52,6 +56,7 @@ export default function SpacingGrid({list}) {
                       </Typography>
                     </CardContent>
                   </Card>
+                  </div>
                 </Grid>
             ))}
           </Grid>
