@@ -17,6 +17,13 @@ function MoreVertIcon() {
 
 export default function SpacingGrid({list}) {
 
+  const onClick = (id) => {
+    const url = `https://www.karts.ac.kr/usr/shw/exh/selectUsrShowDetail.do?exNo=${id}`;
+
+    window.open(url, '_blank',);
+
+  }
+
   return (
       <Grid sx={{flexGrow: 1}} container spacing={2}>
         <Grid item xs={12}>
@@ -25,6 +32,7 @@ export default function SpacingGrid({list}) {
                 <Grid key={item.id} item>
                   <div
                       class='card'
+                      onClick={(event) => onClick(item.id)}
                   >
                   <Card
                       sx={{
