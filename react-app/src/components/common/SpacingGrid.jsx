@@ -5,7 +5,7 @@ import {
   Card,
   CardContent,
   CardHeader,
-  CardMedia,
+  CardMedia, Chip,
   IconButton, Typography
 } from "@mui/material";
 import {red} from "@mui/material/colors";
@@ -19,11 +19,9 @@ export default function SpacingGrid({list}) {
 
   const onClick = (id) => {
     const url = `https://www.karts.ac.kr/usr/shw/exh/selectUsrShowDetail.do?exNo=${id}`;
-
     window.open(url, '_blank',);
-
   }
-
+  console.log(list)
   return (
       <Grid sx={{flexGrow: 1}} container spacing={2}>
         <Grid item xs={12}>
@@ -52,6 +50,14 @@ export default function SpacingGrid({list}) {
                         title={item.title}
                         subheader={item.startDate === item.endDate ? item.startDate : item.startDate + " ~ " + item.endDate}
                     />
+                      <div style={{margin: '0 0 10px 10px'}}>
+                        { item.tag?.map(((v) => <Chip
+                              label={v}
+                              size="small"
+                              variant="outlined"
+                              style={{margin: "0 3px"}}
+                          />)) }
+                      </div>
 
                     <CommonImage
                       item={item}
