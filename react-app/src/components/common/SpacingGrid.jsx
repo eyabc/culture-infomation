@@ -35,7 +35,8 @@ export default function SpacingGrid({list}) {
                   <Card
                       sx={{
                     width: 300,
-                  }}>
+                  }}
+                  >
                     <CardHeader
                         avatar={
                           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
