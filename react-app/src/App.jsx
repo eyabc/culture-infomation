@@ -1,6 +1,8 @@
 import React from "react"
 import { useMediaQuery } from "react-responsive"
-import Pc from "./components/pc/pc.jsx";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Home from "./router/Home";
+import SnsContent from "./router/SnsContent";
 
 function App() {
 
@@ -17,7 +19,14 @@ function App() {
   return (
 
     <div className="App">
-      <Pc />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/sns" element={<SnsContent />} />
+          {/*<Route path="/contact" element={<Contact />} />*/}
+        </Routes>
+      </BrowserRouter>
+
     </div>
   );
 }

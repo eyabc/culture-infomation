@@ -24,7 +24,8 @@ const list = [
         })(),
         startDate: item.exStdt,
         endDate: item.exEddt,
-        tag: [ "music" ]
+        tag: [ "music" ],
+        location: [ "서울" ]
       })),
     }
   },
@@ -95,7 +96,7 @@ const gitWrite = async (name, content, sha) => {
   });
 
 }
-// 이메일이 자꾸와서... ㅠ
+
 const main = async () => {
   try {
     await fetchAPIAndSaveResult();
